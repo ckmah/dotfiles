@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-
-
 # ==========
 # Linux program installs with apt
 # ==========
@@ -12,13 +10,14 @@ chsh -s $(which zsh)
 # ==========
 # Manual installs
 # ==========
+echo "Installing tpm..."
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Installing Zplug..."
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 echo "Installing miniconda..."
 curl -sL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh | bash
-
 
 # ==========
 # dotbot: dotfile bootstrapper
