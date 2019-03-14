@@ -3,7 +3,7 @@
 # ==========
 # Linux program installs with apt
 # ==========
-sudo apt -y install curl nodejs npm tmux zsh
+sudo apt -y install blueman curl ffmpeg nodejs npm tmux xclip zsh
 
 chsh -s $(which zsh)
 

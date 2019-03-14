@@ -8,6 +8,9 @@
     ~/.ssh/config:
         path: ssh/config
         create: true
+    ~/.ssh/themes:
+        path: themes
+        create: true
     ~/.tmux.conf: tmux.conf
     ~/.zshrc: zshrc
 
