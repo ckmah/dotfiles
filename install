@@ -10,6 +10,11 @@ chsh -s $(which zsh)
 # ==========
 # Manual installs
 # ==========
+echo "Installing Dropbox..."
+wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb"
+sudo dpkg -i "dropbox_2019.01.31_amd64.deb"
+rm "dropbox_2019.01.31_amd64.deb"
+
 echo "Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
