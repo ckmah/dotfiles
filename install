@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
 
 
+
+# ==========
+# Linux program installs with apt
+# ==========
+sudo apt -y install curl nodejs npm tmux zsh
+
+chsh -s $(which zsh)
+
+# ==========
+# Manual installs
+# ==========
+
+echo "Installing Zplug..."
+curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+
+echo "Installing miniconda..."
+curl -sL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh | bash
+
+
 # ==========
 # dotbot: dotfile bootstrapper
 # ==========
@@ -18,41 +37,3 @@ git submodule update --init --recursive "${DOTBOT_DIR}"
 
 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -c "${CONFIG}" "${@}"
 
-# ==========
-# Linux program installs with apt
-# ==========
-sudo apt -y install git
-
-read -r -p "What is your github.com username? " githubuser
-read -r -p "What is your first name? " firstname
-read -r -p "What is your last name? " lastname
-
-fullname="$firstname $lastname"
-
-read -r -p "What is your email? " email
-
-running "replacing items in .gitconfig with your info ($fullname, $email, $githubuser)"
-sed -i 's/GITHUBEMAIL/'$email'/' $HOME/.gitconfig;
-sed -i 's/GITHUBUSER/'$githubuser'/' $HOME/.gitconfig;
-
-
-sudo apt -y install curl nodejs npm tmux zsh
-
-chsh -s $(which zsh)
-
-# ==========
-# Manual installs
-# ==========
-
-echo "Installing LastPass..."
-wget https://download.cloud.lastpass.com/linux/lplinux.tar.bz2
-tar xjvf lplinux.tar.bz2
-cd lplinux && ./install_lastpass.sh
-rm lplinux.tar.bz2
-rm -r lplinux
-
-echo "Installing Zplug..."
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
-
-echo "Installing miniconda..."
-curl -sL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh | sh
