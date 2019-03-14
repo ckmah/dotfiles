@@ -1,0 +1,14 @@
+name: basics
+channels:
+- defaults
+- conda-forge
+- r
+dependencies:
+- numpy
+- pandas
+- matplotlib
+- seaborn
+- scipy
+- jupyter
+- jupyterlab
+
