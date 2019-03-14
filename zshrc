@@ -1,13 +1,26 @@
 # ==========
-# Zsh Antibody
+# Zsh Zplug
 # ==========
 
-source <(antibody init)
-antibody bundle < ~/Dropbox/bundles.txt
+source ~/.zplug/init.zsh
 
-# for pure theme
-antibody bundle mafredri/zsh-async
-antibody bundle dfurnes/purer
+zplug djui/alias-tips
+zplug zsh-users/zsh-completions
+zplug zdharma/fast-syntax-highlighting
+zplug b4b4r07/enhancd
+zplug mafredri/zsh-async, from:github
+zplug dfurnes/purer, use:pure.zsh, from:github, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load
+
 PURE_PROMPT_SYMBOL=→
 
 # ==========
