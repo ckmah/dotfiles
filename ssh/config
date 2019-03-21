@@ -1,1 +1,34 @@
-IdentityFile ~/.ssh/id_rsa
+Host github github.com
+Hostname github.com
+User git
+PubKeyAuthentication yes
+IdentityFile /home/user/.ssh/id_rsa
+ForwardX11 no
+
+Host tscc
+Hostname tscc-login2.sdsc.edu
+User ckmah
+PubKeyAuthentication yes
+IdentityFile /home/ckmah/.ssh/id_rsa
+ForwardX11 no
+
+Host tscc
+Hostname tscc-login2.sdsc.edu
+User ucsd-train22
+PubKeyAuthentication yes
+IdentityFile /home/ckmah/.ssh/id_rsa
+ForwardX11 no
+
+Host comet
+Hostname comet.sdsc.edu
+User ckmah
+PubkeyAuthentication yes
+IdentityFile /home/ckmah/.ssh/id_rsa
+ForwardX11 no
+
+Host granache
+Hostname granache.ucsd.edu
+User ckmah
+PubKeyAuthentication yes
+IdentityFile /home/ckmah/.ssh/id_rsa
+ForwardX11 no

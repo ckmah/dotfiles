@@ -34,6 +34,8 @@ else
 	export PATH="/Users/ckmah/anaconda3/bin:$PATH"
 fi
 
+export PATH="home/ckmah/bin/IGV_Linux_2.5.0:$PATH"
+
 # =======
 # Aliases
 # =======
@@ -42,6 +44,7 @@ fi
 alias ll='ls -lah'
 alias zshrc='vim ~/.zshrc; source ~/.zshrc'
 alias hyperjs='vim ~/Dropbox/.hyper.js'
+alias dotfiles='vim ~/dotfiles/install'
 export EDITOR=subl
 
 # Notebook
@@ -57,6 +60,7 @@ alias sshbroad="ssh cmah@login.broadinstitute.org"
 alias sshlji="ssh cmah@10.0.100.27"
 alias sshtscc="ssh ckmah@tscc-login2.sdsc.edu"
 alias sshcomet="ssh ckmah@comet.sdsc.edu"
+alias sshgranache="ssh ckmah@grenache.ucsd.edu"
 alias cometlab="bash ~/Dropbox/tunnel_lab_comet.sh"
 alias ljilab="bash ~/Dropbox/tunnel_lab_lji.sh"
 alias killport="lsof -t -i tcp:$1 | xargs kill"
@@ -78,5 +82,4 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 # Startup
 # =======
 
-export DISPLAY=:0
-
+#export DISPLAY=:0
