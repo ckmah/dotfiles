@@ -26,8 +26,8 @@ PubkeyAuthentication yes
 IdentityFile /home/ckmah/.ssh/id_rsa
 ForwardX11 no
 
-Host granache
-Hostname granache.ucsd.edu
+Host grenache
+Hostname grenache.ucsd.edu
 User ckmah
 PubKeyAuthentication yes
 IdentityFile /home/ckmah/.ssh/id_rsa
