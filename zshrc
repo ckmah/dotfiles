@@ -29,7 +29,7 @@ PURE_PROMPT_SYMBOL=→
 
 # added by Anaconda3 4.3.1 installer
 if [[ $(uname) == 'Linux' ]]; then
-	export PATH="/home/ckmah/miniconda3/bin:$PATH"
+# export PATH="/home/ckmah/miniconda3/bin:$PATH"  # commented out by conda initialize
 else
 	export PATH="/Users/ckmah/anaconda3/bin:$PATH"
 fi
@@ -72,7 +72,24 @@ alias 262lab='nohup ssh -f ucsd-train22@tscc-login2.sdsc.edu "qsub ~/labjob.q"; 
 alias porttscc='nohup ssh -N -f -L localhost:2528:localhost:2528 ckmah@tscc-login2.sdsc.edu'
 alias tscclab='nohup ssh -f ckmah@tscc-login2.sdsc.edu "qsub ~/bin/jupyterlab.q"; porttscc'
 
+function portnrnb
+{
+port=2531
+lsof -ti:$port | xargs kill -9
 
+if [[ $# -eq 1 ]] ; then
+        echo "ssh-ing into "$1
+        open http://localhost:$port/lab
+        if [[ $1 == nrnb* ]] ; then
+                ssh -L $port:localhost:$port ckmah@grenache.ucsd.edu -t ssh -L $port:localhost:$port ckmah@nrnb-head -t ssh -N -L $port:localhost:$port ckmah@$1
+        else
+                ssh -L $port:localhost:$port ckmah@grenache.ucsd.edu -t ssh -N -L $port:localhost:$port ckmah@$1
+        fi
+else
+	echo 'ssh-ing into pinella'
+	ssh -N -L ${port}:localhost:${port} ckmah@grenache.ucsd.edu -t ssh -N -L ${port}:localhost:${port} ckmah@pinella
+fi
+}
 # Mount remotes
 alias mountcomet='mkdir ~/oasis ; sudo umount ~/oasis ; sudo sshfs -o allow_other,defer_permissions ckmah@comet.sdsc.edu:/oasis/scratch/comet/ckmah/temp_project ~/oasis;'
 alias mountlji='mkdir ~/lji ; sudo umount ~/lji ; sudo sshfs -o allow_other,IdentityFile=/home/clarence/.ssh/lji_id cmah@10.0.100.27:/home/cmah ~/lji'
@@ -83,3 +100,19 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 # =======
 
 #export DISPLAY=:0
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ckmah/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ckmah/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/ckmah/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ckmah/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
