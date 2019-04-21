@@ -57,12 +57,12 @@ echo "Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Installing Zplug..."
-wget -O installer.sh https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
-bash installer.sh
+wget -O installer.sh https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
+zsh installer.sh
 rm installer.sh
 
 echo "Installing miniconda..."
-wget -O miniconda.sh https https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash miniconda.sh
 rm miniconda.sh
 
