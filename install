@@ -11,8 +11,7 @@ snap install slack --classic
 wget https://github.com/Eugeny/terminus/releases/download/v1.0.73/terminus-1.0.73-linux.deb
 sudo dpkg -i terminus-1.0.73-linux.deb
 sudo apt --fix-broken install
-rm terminus-1.0.73-linux.snap
-
+rm terminus-1.0.73-linux.deb
 
 chsh -s $(which zsh)
 
@@ -20,7 +19,7 @@ chsh -s $(which zsh)
 # Manual installs
 # ==========
 
-mkdir $HOME/bin
+kdir $HOME/bin
 
 # libinput-gestures config
 sudo gpasswd -a $USER input
@@ -49,10 +48,10 @@ sudo apt update && sudo apt install google-drive-ocamlfuse
 mkdir ~/googledrive
 google-drive-ocamlfuse ~/googledrive
 
-echo "Installing Dropbox..."
-wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb"
-sudo dpkg -i "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
-rm "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
+#echo "Installing Dropbox..."
+#wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb"
+#sudo dpkg -i "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
+#rm "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
 
 echo "Installing Mendeley..."
 get "https://desktop-download.mendeley.com/download/linux/mendeleydesktop-1.19.3-linux-x86_64.tar.bz2"
@@ -73,7 +72,7 @@ bash miniconda.sh
 rm miniconda.sh
 
 echo "Installing basic_pkgs.txt..."
-conda install -f basic_pkgs.txt
+conda install --file basic_pkgs.txt
 
 # ==========
 # dotbot: dotfile bootstrapper
