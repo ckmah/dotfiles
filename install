@@ -50,7 +50,7 @@ google-drive-ocamlfuse ~/googledrive
 #rm "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
 
 echo "Installing Mendeley..."
-get "https://desktop-download.mendeley.com/download/linux/mendeleydesktop-1.19.3-linux-x86_64.tar.bz2"
+wget "https://desktop-download.mendeley.com/download/linux/mendeleydesktop-1.19.3-linux-x86_64.tar.bz2"
 tar -zxvf mendeleydesktop-1.19.3-linux-x86_64.tar.bz2 $HOME/bin/mendeley
 export PATH="$HOME/bin/mendeley/bin/:$PATH"
 
