@@ -33,10 +33,6 @@ sudo make install
 libinput-gestures-setup autostart
 libinput-gestures-setup start
 
-sudo add-apt-repository ppa:daniruiz/flat-remix
-sudo apt-get update
-sudo apt-get install flat-remix-gnome flat-remix
-
 echo "Installing Google Chrome..."
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo dpkg -i google-chrome-stable_current_amd64.deb
