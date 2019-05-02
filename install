@@ -1,58 +1,90 @@
 #!/usr/bin/env bash
 
+
+# ==============================
+# Linux installs
+# ==============================
+
 # ==========
-# Linux program installs with apt
+# apt installs
 # ==========
-sudo apt -y install software-properties-common curl ffmpeg nodejs npm tmux xclip zsh python3-setuptools xdotool python3-gi libinput-tools python-gobject wmctrl
+if [[ "$OSTYPE" == "linux-gnu" ]]; then
 
-snap install spotify caprine
-snap install slack --classic
+	sudo apt -y install software-properties-common curl ffmpeg nodejs npm tmux xclip zsh python3-setuptools xdotool python3-gi libinput-tools python-gobject wmctrl
 
-wget https://github.com/Eugeny/terminus/releases/download/v1.0.73/terminus-1.0.73-linux.deb
-sudo dpkg -i terminus-1.0.73-linux.deb
-sudo apt --fix-broken install
-rm terminus-1.0.73-linux.deb
-
-chsh -s $(which zsh)
+	snap install spotify caprine
+	snap install slack --classic
 
 # ==========
 # Manual installs
 # ==========
 
-kdir $HOME/bin
+	mkdir $HOME/bin
 
-# libinput-gestures config
-sudo gpasswd -a $USER input
+	# libinput-gestures config
+	sudo gpasswd -a $USER input
 
-# Mouse Gestures
-mkdir $HOME/bin/gestures
-git clone https://github.com/bulletmark/libinput-gestures.git $HOME/bin/gestures
-cd $HOME/bin/gestures
-sudo make install
+	# Mouse Gestures
+	mkdir $HOME/bin/gestures
+	git clone https://github.com/bulletmark/libinput-gestures.git $HOME/bin/gestures
+	cd $HOME/bin/gestures
+	sudo make install
 
-libinput-gestures-setup autostart
-libinput-gestures-setup start
+	libinput-gestures-setup autostart
+	libinput-gestures-setup start
 
-echo "Installing Google Chrome..."
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo dpkg -i google-chrome-stable_current_amd64.deb
-rm google-chrome-stable_current_amd64.deb
+	echo "Installing Google Chrome..."
+	wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	sudo dpkg -i google-chrome-stable_current_amd64.deb
+	rm google-chrome-stable_current_amd64.deb
 
-echo "Installing Google Drive ocamlfuse..."
-sudo add-apt-repository -y ppa:alessandro-strada/ppa
-sudo apt update && sudo apt install google-drive-ocamlfuse
-mkdir ~/googledrive
-google-drive-ocamlfuse ~/googledrive
+	echo "Installing Google Drive ocamlfuse..."
+	sudo add-apt-repository -y ppa:alessandro-strada/ppa
+	sudo apt update && sudo apt install google-drive-ocamlfuse
+	mkdir ~/googledrive
+	google-drive-ocamlfuse ~/googledrive
+	
+	#echo "Installing Dropbox..."
+	#wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb"
+	#sudo dpkg -i "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
+	#rm "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
 
-#echo "Installing Dropbox..."
-#wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.01.31_amd64.deb"
-#sudo dpkg -i "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
-#rm "download?dl=packages%2Fubuntu%2Fdropbox_2019.01.31_amd64.deb"
+	echo "Installing Mendeley..."
+	wget "https://desktop-download.mendeley.com/download/linux/mendeleydesktop-1.19.3-linux-x86_64.tar.bz2"
+	tar -zxvf mendeleydesktop-1.19.3-linux-x86_64.tar.bz2 $HOME/bin/mendeley
+	export PATH="$HOME/bin/mendeley/bin/:$PATH"
 
-echo "Installing Mendeley..."
-wget "https://desktop-download.mendeley.com/download/linux/mendeleydesktop-1.19.3-linux-x86_64.tar.bz2"
-tar -zxvf mendeleydesktop-1.19.3-linux-x86_64.tar.bz2 $HOME/bin/mendeley
-export PATH="$HOME/bin/mendeley/bin/:$PATH"
+	wget https://github.com/Eugeny/terminus/releases/download/v1.0.73/terminus-1.0.73-linux.deb
+	sudo dpkg -i terminus-1.0.73-linux.deb
+	sudo apt --fix-broken install
+	rm terminus-1.0.73-linux.deb
+
+	echo "Installing miniconda..."
+	wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+	bash miniconda.sh
+	rm miniconda.sh
+# ==============================
+# OSX installs
+# ==============================
+elif [[ "$OSTYPE" == "darwin"* ]]; then
+	brew install wget
+	brew cask install google-chrome
+
+
+	echo "Installing miniconda..."
+	wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-MacOSX-x86_64.sh
+	bash miniconda.sh
+	rm miniconda.sh
+else
+	echo "OS unknown..."
+fi
+
+
+
+# ==============================
+# Common installs
+# ==============================
+chsh -s $(which zsh)
 
 echo "Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -61,11 +93,6 @@ echo "Installing Zplug..."
 wget -O installer.sh https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
 zsh installer.sh
 rm installer.sh
-
-echo "Installing miniconda..."
-wget -O miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash miniconda.sh
-rm miniconda.sh
 
 echo "Installing basic_pkgs.txt..."
 conda install --file basic_pkgs.txt
