@@ -1,3 +1,19 @@
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/clarence/data/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/clarence/data/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/clarence/data/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/clarence/data/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
 # ==========
 # Zsh Zplug
 # ==========
@@ -9,7 +25,8 @@ zplug zsh-users/zsh-completions
 zplug zdharma/fast-syntax-highlighting
 zplug b4b4r07/enhancd
 zplug mafredri/zsh-async, from:github
-zplug dfurnes/purer, use:pure.zsh, from:github, as:theme
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+#zplug dfurnes/purer, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -26,15 +43,6 @@ PURE_PROMPT_SYMBOL=→
 # ==========
 # PATH Setup
 # ==========
-
-# added by Anaconda3 4.3.1 installer
-if [[ $(uname) == 'Linux' ]]; then
-# export PATH="/home/ckmah/miniconda3/bin:$PATH"  # commented out by conda initialize
-else
-	export PATH="/Users/ckmah/anaconda3/bin:$PATH"
-fi
-
-export PATH="home/ckmah/bin/IGV_Linux_2.5.0:$PATH"
 
 # =======
 # Aliases
@@ -100,19 +108,4 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 # =======
 
 #export DISPLAY=:0
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/ckmah/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/ckmah/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/ckmah/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/ckmah/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
