@@ -80,6 +80,12 @@ alias 262lab='nohup ssh -f ucsd-train22@tscc-login2.sdsc.edu "qsub ~/labjob.q"; 
 alias porttscc='nohup ssh -N -f -L localhost:2528:localhost:2528 ckmah@tscc-login2.sdsc.edu'
 alias tscclab='nohup ssh -f ckmah@tscc-login2.sdsc.edu "qsub ~/bin/jupyterlab.q"; porttscc'
 
+port() {
+# $1 = port number
+# $2 = user@server.com
+nohup ssh -N -f -L localhost:$1:localhost:$1 $2
+}
+
 function portnrnb
 {
 port=2531
