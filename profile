@@ -25,3 +25,14 @@ fi
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
+
+preferred_shell=
+if [ -x $(which zsh) ]; then
+  preferred_shell=$(which zsh)
+fi
+
+if [ -n "$preferred_shell" ]; then
+  case $- in
+    *i*) SHELL=$preferred_shell; export SHELL; exec "$preferred_shell";;
+  esac
+fi
