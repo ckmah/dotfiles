@@ -53,7 +53,7 @@ alias ll='ls -lah'
 alias zshrc='vim ~/.zshrc; source ~/.zshrc'
 alias hyperjs='vim ~/Dropbox/.hyper.js'
 alias dotfiles='vim ~/dotfiles/install'
-export EDITOR=subl
+export EDITOR=vim
 
 # Notebook
 alias book='jupyter notebook --no-browser --NotebookApp.iopub_data_rate_limit=10000000000'
