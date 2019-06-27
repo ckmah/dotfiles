@@ -94,9 +94,9 @@ echo "Installing tpm..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 echo "Installing Zplug..."
-wget -O installer.sh https://raw.githubusercontent.com/zplug/installer/master/installer.zsh
-zsh installer.sh
-rm installer.sh
+export ZPLUG_HOME=~/.zplug
+git clone https://github.com/zplug/zplug $ZPLUG_HOME
+zsh $ZPLUG_HOME/init.zsh
 
 echo "Installing basic_pkgs.txt..."
 conda install --file basic_pkgs.txt
