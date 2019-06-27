@@ -88,6 +88,11 @@ fi
 # ==============================
 # Common installs
 # ==============================
+
+echo "Installing basic_pkgs.txt..."
+conda config --append channels conda-forge
+conda install --file basic_pkgs.txt
+
 chsh -s $(which zsh)
 
 echo "Installing tpm..."
@@ -97,9 +102,6 @@ echo "Installing Zplug..."
 export ZPLUG_HOME=~/.zplug
 git clone https://github.com/zplug/zplug $ZPLUG_HOME
 zsh $ZPLUG_HOME/init.zsh
-
-echo "Installing basic_pkgs.txt..."
-conda install --file basic_pkgs.txt
 
 # ==========
 # dotbot: dotfile bootstrapper
