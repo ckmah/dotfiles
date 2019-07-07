@@ -1,3 +1,11 @@
+# added by Anaconda3 4.3.1 installer
+if [[ $(uname) == 'Linux' ]]; then
+    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
+else
+    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
+fi
+]
+
 # ==========
 # Zsh Zplug
 # ==========
@@ -9,7 +17,7 @@ zplug zsh-users/zsh-completions
 zplug zdharma/fast-syntax-highlighting
 zplug b4b4r07/enhancd
 zplug mafredri/zsh-async, from:github
-zplug dfurnes/purer, use:pure.zsh, from:github, as:theme
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -27,15 +35,7 @@ PURE_PROMPT_SYMBOL=→
 # PATH Setup
 # ==========
 
-# added by Anaconda3 4.3.1 installer
-if [[ $(uname) == 'Linux' ]]; then
-# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-else
-# export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-fi
 
-export PATH="$HOME/bin/IGV_Linux_2.5.0:$PATH"
-export PATH="$HOME/bin/homer/bin/:$PATH"
 # =======
 # Aliases
 # =======
@@ -45,7 +45,7 @@ alias ll='ls -lah'
 alias zshrc='vim ~/.zshrc; source ~/.zshrc'
 alias hyperjs='vim ~/Dropbox/.hyper.js'
 alias dotfiles='vim ~/dotfiles/install'
-export EDITOR=subl
+export EDITOR=vim
 
 # Notebook
 alias book='jupyter notebook --no-browser --NotebookApp.iopub_data_rate_limit=10000000000'
@@ -71,6 +71,12 @@ alias 262lab='nohup ssh -f ucsd-train22@tscc-login2.sdsc.edu "qsub ~/labjob.q"; 
 
 alias porttscc='nohup ssh -N -f -L localhost:2528:localhost:2528 ckmah@tscc-login2.sdsc.edu'
 alias tscclab='nohup ssh -f ckmah@tscc-login2.sdsc.edu "qsub ~/bin/jupyterlab.q"; porttscc'
+
+port() {
+# $1 = port number
+# $2 = user@server.com
+nohup ssh -N -f -L localhost:$1:localhost:$1 $2
+}
 
 function portnrnb
 {
@@ -100,19 +106,4 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 # =======
 
 #export DISPLAY=:0
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/Clarence/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/Clarence/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/Clarence/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/Clarence/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 
