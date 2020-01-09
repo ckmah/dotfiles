@@ -1,11 +1,3 @@
-# added by Anaconda3 4.3.1 installer
-if [[ $(uname) == 'Linux' ]]; then
-    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-else
-    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-fi
-]
-
 # ==========
 # Zsh Zplug
 # ==========
@@ -74,26 +66,30 @@ alias tscclab='nohup ssh -f ckmah@tscc-login2.sdsc.edu "qsub ~/bin/jupyterlab.q"
 
 port() {
 # $1 = port number
-# $2 = user@server.com
-nohup ssh -N -f -L localhost:$1:localhost:$1 $2
+# $2 = server port number
+# $3 = user@server.com
+nohup ssh -N -f -L localhost:${1}:localhost:${2} $3
 }
 
-function portnrnb
+function ssh_jupyter
 {
-port=2531
+port=8126
+username=ckmah
 lsof -ti:$port | xargs kill -9
 
 if [[ $# -eq 1 ]] ; then
         echo "ssh-ing into "$1
         open http://localhost:$port/lab
+
         if [[ $1 == nrnb* ]] ; then
-                ssh -L $port:localhost:$port ckmah@grenache.ucsd.edu -t ssh -L $port:localhost:$port ckmah@nrnb-head -t ssh -N -L $port:localhost:$port ckmah@$1
+                ssh -L ${port}:localhost:${port} $username@grenache -t ssh -L ${port}:localhost:${port} $username@nrnb-head -t ssh -N -L ${port}:localhost:${port} $username@$1
         else
-                ssh -L $port:localhost:$port ckmah@grenache.ucsd.edu -t ssh -N -L $port:localhost:$port ckmah@$1
+                ssh -L ${port}:localhost:${port} $username@grenache -t ssh -N -L ${port}:localhost:${port} $username@$1
         fi
 else
 	echo 'ssh-ing into pinella'
-	ssh -N -L ${port}:localhost:${port} ckmah@grenache.ucsd.edu -t ssh -N -L ${port}:localhost:${port} ckmah@pinella
+	open http://localhost:$port/lab
+	ssh -N -L ${port}:localhost:${port} $username@grenache -t ssh -N -L ${port}:localhost:${port} $username@pinella
 fi
 }
 # Mount remotes
@@ -106,4 +102,20 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 # =======
 
 #export DISPLAY=:0
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/Clarence/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/Clarence/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/Clarence/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/Clarence/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
