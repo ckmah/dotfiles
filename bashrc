@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -117,18 +117,20 @@ if ! shopt -oq posix; then
 fi
 
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/samumed.local/cmah/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/samumed.local/cmah/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/samumed.local/cmah/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/samumed.local/cmah/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin/julia-9d11f62bcb/bin:$PATH"
 
+function nrnb_usage
+{
+    for i in $(squeue | grep ' R ' | sed 's/ \+/\t/g' | cut -f 5 | sort -u); do
+        echo $i $(squeue | grep $i | grep ' R ' | awk 'BEGIN {sum=0}; {sum+=$7}; END {print sum}')
+    done
+   
+    sinfo -p all -o%C | tail -n1 | awk -F/ '{ print "===== Core Usage =====\nAllocated:\t" $1 "\nIdle:\t\t" $2 }'
+}
+
+function nrnb_node_usage
+{
+    squeue | grep nrnb | sed 's/ \+/\t/g' | cut -f 9 | sort | uniq -c
+}

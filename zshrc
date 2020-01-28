@@ -1,10 +1,3 @@
-# added by Anaconda3 4.3.1 installer
-if [[ $(uname) == 'Linux' ]]; then
-    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-else
-    export PATH="$HOME/miniconda3/bin:$PATH"  # commented out by conda initialize
-fi
-]
 
 # ==========
 # Zsh Zplug
@@ -43,39 +36,22 @@ PURE_PROMPT_SYMBOL=→
 # General
 alias ll='ls -lah'
 alias zshrc='vim ~/.zshrc; source ~/.zshrc'
-alias hyperjs='vim ~/Dropbox/.hyper.js'
 alias dotfiles='vim ~/dotfiles/install'
 export EDITOR=vim
 
 # Notebook
-alias book='jupyter notebook --no-browser --NotebookApp.iopub_data_rate_limit=10000000000'
-alias lab='jupyter lab --NotebookApp.iopub_data_rate_limit=1000000000 --no-browser'
+alias lab='jupyter lab --NotebookApp.iopub_data_rate_limit=1000000000 --no-browser --port=2531'
 
 # Projects
-alias newproject='git clone https://github.com/ckmah/project-template.git'
+alias project='git clone https://github.com/ckmah/project-template.git'
 
 # ssh
-alias ssh262="ssh ucsd-train22@tscc-login2.sdsc.edu"
-alias sshbroad="ssh cmah@login.broadinstitute.org"
-alias sshlji="ssh cmah@10.0.100.27"
-alias sshtscc="ssh ckmah@tscc-login2.sdsc.edu"
-alias sshcomet="ssh ckmah@comet.sdsc.edu"
-alias sshgranache="ssh ckmah@grenache.ucsd.edu"
-alias cometlab="bash ~/Dropbox/tunnel_lab_comet.sh"
-alias ljilab="bash ~/Dropbox/tunnel_lab_lji.sh"
-alias killport="lsof -t -i tcp:$1 | xargs kill"
-
-# TSCC Jupyter
-alias port262='nohup ssh -N -f -L localhost:2529:localhost:2529 ucsd-train22@tscc-login2.sdsc.edu'
-alias 262lab='nohup ssh -f ucsd-train22@tscc-login2.sdsc.edu "qsub ~/labjob.q"; port262'
-
-alias porttscc='nohup ssh -N -f -L localhost:2528:localhost:2528 ckmah@tscc-login2.sdsc.edu'
-alias tscclab='nohup ssh -f ckmah@tscc-login2.sdsc.edu "qsub ~/bin/jupyterlab.q"; porttscc'
+alias killport="lsof -t -i tcp:$1 | xargs kill -9"
 
 port() {
 # $1 = port number
 # $2 = user@server.com
-nohup ssh -N -f -L localhost:$1:localhost:$1 $2
+ssh -N -f -L localhost:$1:localhost:$1 $2 &
 }
 
 function portnrnb
