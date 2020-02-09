@@ -5,6 +5,7 @@
     ~/.bashrc: bashrc
     ~/.bash_logout: bash_logout
     ~/.fonts: fonts
+    ~/.config/hyper/.hyper.js: hyper.js
     ~/.screenrc: screenrc
     ~/.ssh/config:
         path: ssh/config
