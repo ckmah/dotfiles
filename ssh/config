@@ -15,9 +15,9 @@ PubKeyAuthentication yes
 IdentityFile ~/.ssh/id_rsa
 ForwardX11 no
 
-Host tscc
+Host ta
 HostName tscc-login2.sdsc.edu
-User ucsd-train22
+User ucsd-train03
 PubKeyAuthentication yes
 IdentityFile ~/.ssh/id_rsa
 ForwardX11 no

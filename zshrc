@@ -26,7 +26,8 @@ PURE_PROMPT_SYMBOL=→
 # ==========
 # PATH Setup
 # ==========
-
+# Keyboard settings in terminal (affects hyper)
+xset r rate 250 25
 
 # =======
 # Aliases
@@ -46,7 +47,7 @@ alias project='git clone https://github.com/ckmah/project-template.git'
 
 # ssh
 alias killport="lsof -t -i tcp:$1 | xargs kill -9"
-
+alias ssh_tscc="ssh -NL 2528:localhost:2528 ckmah@tscc"
 function ssh_jupyter
 {
 port=8126
