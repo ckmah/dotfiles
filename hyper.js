@@ -9,7 +9,7 @@ module.exports = {
     updateChannel: 'stable',
 
     // default font size in pixels for all tabs
-    fontSize: 10,
+    fontSize: 14,
 
     // font family with optional fallbacks
     fontFamily: 'Menlo, "DejaVu Sans Mono", Consolas, "Lucida Console", monospace',
@@ -137,6 +137,12 @@ module.exports = {
     // rendering (slower, but supports transparent backgrounds)
     webGLRenderer: true,
 
+
+    summon: {
+      hideDock: true,
+      hideOnBlur: false,
+      hotkey: 'Alt+Space'
+    },
     // for advanced config flags please refer to https://hyper.is/#cfg
   },
 
@@ -147,10 +153,11 @@ module.exports = {
   //   `@company/project`
   //   `project#1.0.1`
   plugins: [
+    'hyperterm-summon',
     'hyperterm-snazzy',
     //'hyper-ayu',
     //'hyper-ayu-light',
-    //'hyper-ayu-mirage',
+    'hyper-ayu-mirage',
   ],
 
   // in development, you can create a directory under
