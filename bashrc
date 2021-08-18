@@ -120,6 +120,8 @@ fi
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/bin/julia-9d11f62bcb/bin:$PATH"
+export PATH="$HOME/Data/bin/homer/bin:$PATH"
+export PATH="/snap/bin:$PATH"
 
 function nrnb_usage
 {

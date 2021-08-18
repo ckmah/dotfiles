@@ -56,6 +56,10 @@ User ubuntu
 PubKeyAuthentication yes
 IdentityFile ~/.ssh/id_rsa
 ForwardX11 no
-Host grenache
-  HostName grenache
-  User ckmah
+
+Host nrnb
+HostName nrnb-login.ucsd.edu
+User ckmah
+PubKeyAuthentication yes
+IdentityFile ~/.ssh/id_rsa
+ForwardX11 no

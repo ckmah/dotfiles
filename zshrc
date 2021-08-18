@@ -26,6 +26,11 @@ PURE_PROMPT_SYMBOL=→
 # ==========
 # PATH Setup
 # ==========
+export PATH="$HOME/Data/bin/homer/bin:$PATH"
+export PATH="/snap/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
+export PATH="/home/clarence/.local/bin:$PATH"
+
 # Keyboard settings in terminal (affects hyper)
 xset r rate 250 25
 
@@ -41,9 +46,13 @@ export EDITOR=vim
 
 # Notebook
 alias lab='jupyter lab --NotebookApp.iopub_data_rate_limit=1000000000 --no-browser --port=2531'
+alias lablan='jupyter lab --NotebookApp.iopub_data_rate_limit=10000000000 --no-browser --ip=$(hostname -I | awk "{print \$1}")'
 
 # Projects
 alias project='git clone https://github.com/ckmah/project-template.git'
+
+# Mount ssd
+alias mountdata='sudo /bin/ldmtool create all >/dev/null || true; sudo mount -t ntfs /dev/mapper/ldm_vol_WIN-H06ET0ADCJM-Dg0_Volume1 /home/clarence/Data'
 
 # ssh
 alias killport="lsof -t -i tcp:$1 | xargs kill -9"
@@ -77,14 +86,14 @@ alias mountlji-windows='mkdir ~/lji ; sudo umount ~/lji ; sudo mount -t drvfs E:
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/Clarence/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/clarence/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/Users/Clarence/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/Clarence/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/clarence/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/clarence/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/Users/Clarence/miniconda3/bin:$PATH"
+        export PATH="/home/clarence/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
